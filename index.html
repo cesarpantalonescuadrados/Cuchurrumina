@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta para mi novia — Sobre interactivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6efe9;
+      --envelope:#b84a6b;
+      --envelope-dark:#9a3956;
+      --paper:#fffdf8;
+      --accent:#ffcfde;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--bg),#fff);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+
+    .stage{width:min(520px,92vw);padding:20px}
+    .card-wrap{position:relative;perspective:1200px;height:420px;display:flex;align-items:center;justify-content:center;overflow:visible}
+
+    /* Sobre */
+    .envelope{
+      width:100%;max-width:420px;height:260px;position:relative;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,0.12);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.9,.3,1);
+      background:linear-gradient(180deg,var(--envelope),var(--envelope-dark));overflow:hidden;z-index:5;
+    }
+    .envelope .body{position:absolute;inset:0;border-radius:inherit;display:flex;align-items:center;justify-content:center;color:#fff;padding:28px;z-index:4}
+
+    /* Flap */
+    .flap{
+      position:absolute;left:0;right:0;top:0;height:52%;background:linear-gradient(180deg,var(--envelope-dark),var(--envelope));clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .9s cubic-bezier(.2,.9,.3,1);z-index:6;
+      display:flex;align-items:flex-start;justify-content:center;padding-top:18px
+    }
+    .seal{width:86px;height:86px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #ffd6e8, #ffb0d0);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-size:20px;color:#7a1638;box-shadow:0 6px 18px rgba(0,0,0,0.12);transform:translateY(-4px)}
+
+    /* Letter (paper) */
+.paper{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:85%;
+  height:500px;          /* la hoja tiene bastante altura */
+  max-height:70vh;       /* nunca pasa del alto de la pantalla */
+  transform:translateX(-50%);
+  background:var(--paper);
+  border-radius:12px 12px 0 0;
+  box-shadow:0 10px 30px rgba(10,10,10,.12);
+  padding:26px 28px;
+  overflow:auto;         /* 👉 activa scroll */
+  z-index:3;
+  transition:transform 1s cubic-bezier(.2,.9,.3,1),opacity .6s;
+  opacity:0;
+}
+.paper.open{
+  opacity:1;
+  transform:translate(-57%,-10%); /* sube lo suficiente */
+}
+
+
+    /* When opened state */
+    .envelope.open .flap{transform:rotateX(180deg) translateY(-6px)}
+    .envelope.open{transform:translateY(-8px)}
+
+    /* Content inside paper */
+    .letter-title{font-family:'Playfair Display';font-size:20px;margin:4px 0 8px}
+    .letter-body{font-size:15px;line-height:1.6;color:#3c2d2f}
+    .letter-sign{margin-top:18px;font-family:'Playfair Display';font-size:18px}
+
+    /* Button */
+    .btn-row{display:flex;gap:10px;margin-top:14px}
+    .btn{background:transparent;border:2px solid rgba(0,0,0,0.06);padding:9px 12px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn.primary{background:var(--accent);border:none}
+
+    /* Small helper text */
+    .hint{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:13px;color:#7a5a6a}
+
+    /* Responsive tweaks */
+    @media (max-width:420px){
+      .card-wrap{height:480px}
+      .envelope{height:220px}
+      .paper{height:320px}
+      .letter-title{font-size:18px}
+      .letter-body{font-size:15px}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      .flap,.envelope,.paper{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div style="text-align:center;margin-bottom:14px">
+      <h1 style="margin:0;font-family:'Playfair Display';font-size:20px">Te amo ❤️</h1>
+     
+    </div>
+
+    <div class="card-wrap" role="application" aria-label="Sobre interactivo">
+      <!-- Carta (hoja) -->
+      <article class="paper" id="paper" aria-hidden="true">
+        <h3 class="letter-title">Mi amor,</h3>
+  <div class="letter-body">
+ 
+  <!-- Poema pulido -->
+  <div class="poem" aria-hidden="false">
+Para el amor de mi vida,
+quiero que sepas que me gustaría aprender de tu conciencia,
+ser yo quien te entienda, perderme en tus siluetas
+y con el tiempo estar en tus poemas.
+
+Si bien yo no sé escribir poemas, lo intentaré con unas cuantas letras;
+quiero que me enseñes tus ideas para encontrar tus dilemas.
+Que si tu café es tan amargo y exacto como lo pretendes,
+sea yo quien te lo prepare como se debe.
+
+Déjame ser yo quien te pinte en acuarela cada una de tus curvas,
+que te asemejan a ser la mujer perfecta en la vida de cualquier poeta. 
+    <span class="heart">♥</span>
+  </div>
+
+  <p>Sé que esta carta no compensa el regalo ausente
+en el día que para nosotros es tan importante,
+pero es mi forma sincera y presente
+de expresarte lo que siento constante.
+
+Espero la recibas como un detalle del corazón,
+un reflejo sencillo de mi más grande emoción.</p>
+
+  <p class="letter-sign">Con todo mi amor,<br><strong>currumin</strong></p>
+</div>
+
+
+          <div class="btn-row">
+            <button class="btn" id="closeBtn">Cerrar</button>
+            <button class="btn primary" id="downloadBtn">Descargar carta</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sobre -->
+      <div class="envelope" id="envelope">
+        <div class="flap" id="flap" aria-hidden="true">
+          <div class="seal">Para ti</div>
+        </div>
+
+        <div class="body" >
+          <div style="text-align:center">
+            <h2 style="margin:0;font-weight:700;letter-spacing:1px; margin-top: 70px;">Mi Cuchurrumina ❤️</h2>
+            <p style="margin:6px 0 0;opacity:0.95">Un pequeño detalle con algo que quiero decirte...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" style="text-align: center;">Hacer click en el sobre</div>
+    </div>
+
+  </main>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const flap = document.getElementById('flap');
+    const paper = document.getElementById('paper');
+    const closeBtn = document.getElementById('closeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let opened = false;
+
+    function openEnvelope(){
+      envelope.classList.add('open');
+      paper.classList.add('open');
+      paper.setAttribute('aria-hidden','false');
+      flap.setAttribute('aria-hidden','true');
+      opened = true;
+    }
+    function closeEnvelope(){
+      envelope.classList.remove('open');
+      paper.classList.remove('open');
+      paper.setAttribute('aria-hidden','true');
+      flap.setAttribute('aria-hidden','false');
+      opened = false;
+    }
+
+    // Toggle when touching/clicking the envelope body or flap
+    envelope.addEventListener('click', (e)=>{
+      // If click is inside the paper, ignore (so buttons work)
+      if(paper.contains(e.target)) return;
+      opened? closeEnvelope() : openEnvelope();
+    });
+
+    closeBtn.addEventListener('click', (e)=>{ e.stopPropagation(); closeEnvelope(); });
+
+    // Download the letter as a simple text file
+    downloadBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const title = document.querySelector('.letter-title').innerText || 'Carta';
+      const body = Array.from(document.querySelectorAll('.letter-body p')).map(p=>p.innerText).join('\n\n');
+      const content = title + '\n\n' + body;
+      const blob = new Blob([content],{type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'carta.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // Keyboard accessibility
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && opened) closeEnvelope();
+      if((e.key === 'Enter' || e.key === ' ') && !opened){ openEnvelope(); e.preventDefault(); }
+    });
+
+    // Friendly mobile tweak: double-tap to open quickly
+    let lastTap = 0;
+    envelope.addEventListener('touchend', (ev)=>{
+      const now = Date.now();
+      if(now - lastTap < 350){ openEnvelope(); }
+      lastTap = now;
+    });
+  </script>
+</body>
+</html>
